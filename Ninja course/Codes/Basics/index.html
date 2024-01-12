@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background-color: #ddd;
+            margin: 20px;
+        }
+
+        ul > li {
+            display: flex;
+            background-color: #ddd;
+            margin: 20px;
+            padding: 50px;
+        }
+
+        .is-fav {
+            background-color: #e5a;
+            color: #fff
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <div v-if="showData">
+            <p>My name is {{ name }}, My age is {{ age }} years old</p>
+        </div>
+
+        <!-- Button events -->
+        <button @click="increaseAge()">Increase age</button>
+        <button @click="changeName('Ahmed')">Change name</button>
+        <div></div>
+        <button @click="toggleData">
+            <p v-if="showData">Hide data</p>
+            <p v-else>Show data</p>
+        </button>
+
+        <!-- Mouse events -->
+        <div class="box" @mouseenter="handleEvent($event, 'Enter')">Mouse enter</div>
+        <div class="box" @mouseleave="handleEvent($event, 'Leave')">Mouse leave</div>
+        <div class="box" @dblclick="handleEvent($event, 'Double click')">Mouse double click</div>
+        <div class="box" @mousemove="handleMouseMove">Mouse move {{ x }} - {{ y }}</div>
+
+        <!-- Loops, class binding -->
+        <p>All users</p>
+        <ul>
+            <li v-for="user in users" :class="{'is-fav': user.isFav}" @click="toggleFav(user)">
+                    User name is: {{ user.name }}, and his age is: {{ user.age }}
+            </li>
+        </ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
